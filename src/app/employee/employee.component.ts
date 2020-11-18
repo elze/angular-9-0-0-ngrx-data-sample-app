@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Employee } from './employee';
+import { EmployeeService } from './employee.service';
 
 @Component({
   selector: 'app-employee',
@@ -8,11 +9,16 @@ import { Employee } from './employee';
   styleUrls: ['./employee.component.css']
 })
 export class EmployeeComponent implements OnInit {
-  heroes$: Observable<Employee[]>;
+  employees$: Observable<Employee[]>;
   loading: boolean;
-  constructor() { }
+  constructor(private employeeService: EmployeeService) { }
 
   ngOnInit() {
+    this.getEmployees();
   }
+
+  getEmployees() {
+    this.employeeService.getAll();
+  }  
 
 }
