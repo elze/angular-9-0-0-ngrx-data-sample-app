@@ -4,6 +4,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { EntityDataModule, DefaultDataServiceConfig } from '@ngrx/data';
+import { EffectsModule } from '@ngrx/effects';
+import { entityMetadata } from './entity-metadata';
+
+import { StoreModule } from "@ngrx/store";
 
 import { AppComponent } from './app.component';
 import { EmployeeComponent } from './employee/employee.component';
@@ -14,6 +18,10 @@ const defaultDataServiceConfig: DefaultDataServiceConfig = {
   timeout: 3000, // request timeout
 }
 
+export const entityConfig = {
+  entityMetadata
+};
+
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'employees' },
   { path: 'employees', component: EmployeeComponent }
@@ -22,10 +30,12 @@ const routes: Routes = [
 @NgModule({
   imports:      
   [ BrowserModule, 
-  //EntityDataModule.forRoot(entityConfig),
+  EffectsModule.forRoot([]),
+  EntityDataModule.forRoot(entityConfig),
   FormsModule,
   HttpClientModule,
-    RouterModule.forRoot(routes),
+  RouterModule.forRoot(routes),
+  StoreModule.forRoot({}),
   ],
   declarations: [ AppComponent, EmployeeComponent ],
   bootstrap:    [ AppComponent ],
