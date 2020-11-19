@@ -1,8 +1,8 @@
-<div *ngIf="employees$ | async as employees">
-	<li *ngFor="let employee of employees; trackBy: byId" class="item-container">
-		<div class="badge">{{employee.id}}</div>
-		<div>{{employee.name}}</div>
-		<div>{{employee.username}}</div>
-		<div>{{employee.phone}}</div>
+<div *ngIf="users">
+	<li *ngFor="let user of users; trackBy: byId" class="item-container">
+		<div class="badge">{{user.id}}</div>
+		<div>{{user.name}}</div>
+		<div>{{user.username}}</div>
+		<div>{{user.phone}}</div>
 	</li>
 </div>
