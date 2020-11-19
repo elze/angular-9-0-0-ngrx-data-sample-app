@@ -1,3 +1,8 @@
-<p>
-employee works!
-</p>
+<div *ngIf="employees$ | async as employees">
+  <li *ngFor="let employee of employees; trackBy: byId" class="item-container">
+      <div class="badge">{{employee.id}}</div>
+        <div >{{employee.employee_name}}</div>
+        <div >{{employee.employee_salary}}</div>
+        <div>{{employee.employee_age}}</div>
+  </li>
+</div>
